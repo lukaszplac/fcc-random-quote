@@ -1,0 +1,63 @@
+:root {
+  --color-background: #b0f59c;
+  --color-button: #b0f59c; }
+
+* {
+  box-sizing: border-box;
+  box-sizing: inherit; }
+
+html {
+  font-size: 62.5%;
+  box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Montserrat', sans-serif; }
+
+.container {
+  background-color: var(--color-background);
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+  .container__quote-box {
+    padding: 2rem;
+    flex: 0 0 85rem;
+    min-height: 45rem;
+    background-color: #ebebeb;
+    box-shadow: 1px 1px 10px black;
+    border-radius: 2px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; }
+    .container__quote-box__quote {
+      padding-top: 3rem;
+      font-size: 4rem;
+      color: black;
+      text-align: center; }
+      .container__quote-box__quote .author {
+        font-size: 1.6rem;
+        padding: 1rem; }
+      .container__quote-box__quote .quote {
+        font-size: 3rem;
+        font-style: italic; }
+    .container__quote-box-nav {
+      display: flex;
+      justify-content: center;
+      align-items: center; }
+      .container__quote-box-nav .nav-button {
+        flex: 0 0 70%;
+        padding: 1rem 1rem 1rem 1rem;
+        margin: 1rem 2rem 1rem 2rem;
+        background-color: var(--color-button);
+        transition: all .3s ease-in-out;
+        font-size: 2rem;
+        border-radius: 2px;
+        outline: none;
+        border: none; }
+        .container__quote-box-nav .nav-button:hover {
+          background-color: red;
+          cursor: pointer;
+          color: white; }
