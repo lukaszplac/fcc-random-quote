@@ -35,7 +35,6 @@
 
         //przez co znaki zostano przetlumaczone a pozniej pobieram je z elementu zeby tweet juz ich nie zawieral
         var text = document.querySelector('.quote p').innerHTML;
-        console.log(text);
         tweetButton.html('');
         window.twttr.widgets.createShareButton(
             '/',
