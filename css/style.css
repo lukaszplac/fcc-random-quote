@@ -15,6 +15,61 @@ body {
   padding: 0;
   font-family: 'Montserrat', sans-serif; }
 
+.navigation {
+  position: relative; }
+  .navigation__sidebar {
+    position: relative; }
+    .navigation__sidebar--backdrop {
+      visibility: hidden;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0);
+      z-index: 999;
+      transition: all .5s; }
+      .navigation__sidebar--backdrop.activate {
+        background-color: rgba(0, 0, 0, 0.65);
+        visibility: visible; }
+    .navigation__sidebar--button {
+      background-color: white;
+      left: 1%;
+      top: 1%;
+      position: fixed;
+      width: 5rem;
+      height: 5rem;
+      border-radius: 30%;
+      text-align: center;
+      color: black;
+      font-size: 3rem;
+      line-height: 150%;
+      transition: all .5s;
+      z-index: 1002; }
+      .navigation__sidebar--button:hover {
+        cursor: pointer; }
+      .navigation__sidebar--button.activate {
+        left: 26%;
+        transform: rotate(-180deg); }
+        @media (max-width: 900px) {
+          .navigation__sidebar--button.activate {
+            left: 51%; } }
+    .activate + .navigation__sidebar--content {
+      left: 0; }
+    .navigation__sidebar--content {
+      z-index: 1000;
+      position: absolute;
+      width: 25%;
+      height: 100vh;
+      top: 0;
+      left: -30%;
+      transition: all .5s;
+      background-color: white; }
+      @media (max-width: 900px) {
+        .navigation__sidebar--content {
+          width: 50%;
+          left: -50%; } }
+
 .container {
   background-color: var(--color-background);
   width: 100vw;
@@ -24,24 +79,27 @@ body {
   align-items: center; }
   .container__quote-box {
     padding: 2rem;
-    flex: 0 0 85rem;
-    min-height: 45rem;
+    flex: 0 0 80rem;
+    min-height: 30rem;
     background-color: #ebebeb;
     box-shadow: 1px 1px 10px black;
     border-radius: 2px;
     display: flex;
     flex-direction: column;
     justify-content: space-between; }
+    @media (max-width: 900px) {
+      .container__quote-box {
+        min-height: 70vh;
+        flex: 0 0 80vw; } }
     .container__quote-box__quote {
       padding-top: 3rem;
-      font-size: 4rem;
       color: black;
       text-align: center; }
       .container__quote-box__quote .author {
         font-size: 1.6rem;
         padding: 1rem; }
       .container__quote-box__quote .quote {
-        font-size: 3rem;
+        font-size: 2rem;
         font-style: italic; }
     .container__quote-box-nav {
       display: flex;
@@ -49,7 +107,7 @@ body {
       align-items: center; }
       .container__quote-box-nav .nav-button {
         flex: 0 0 70%;
-        padding: 1rem 1rem 1rem 1rem;
+        padding: .5rem 1rem .5rem 1rem;
         margin: 1rem 2rem 1rem 2rem;
         background-color: var(--color-button);
         transition: all .3s ease-in-out;

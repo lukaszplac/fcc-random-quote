@@ -22,6 +22,8 @@ body {
     font-family: 'Montserrat', sans-serif;
 }
 
+@import 'sidebar';
+
 .container {
     background-color: var(--color-background); //jquery
     width: 100vw;
@@ -31,17 +33,20 @@ body {
     align-items: center;
     &__quote-box {
         padding: 2rem;
-        flex: 0 0 85rem;
-        min-height: 45rem;
+        flex: 0 0 80rem;
+        min-height: 30rem;
         background-color: $color-quote-box;
         box-shadow: 1px 1px 10px black;
         border-radius: 2px;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        @media (max-width: 900px) {
+            min-height: 70vh;
+            flex: 0 0 80vw;
+        }
         &__quote {
             padding-top: 3rem;
-            font-size: 4rem;
             color: black;
             text-align: center;
             .author {
@@ -49,7 +54,7 @@ body {
                 padding: 1rem;
             }
             .quote {
-                font-size: 3rem;
+                font-size: 2rem;
                 font-style: italic;
             }
         }
@@ -59,7 +64,7 @@ body {
             align-items: center;
             .nav-button {
                 flex: 0 0 70%;
-                padding: 1rem 1rem 1rem 1rem;
+                padding: .5rem 1rem .5rem 1rem;
                 margin: 1rem 2rem 1rem 2rem;
                 background-color: var(--color-button);
                 transition: all .3s ease-in-out;
