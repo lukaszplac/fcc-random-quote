@@ -2,11 +2,16 @@
     var $content = $('.jq-content');
     var $button = $('.jq-button');
     var $backdrop = $('.navigation__sidebar--backdrop');
-    //console.log($button);
+
     $(document).ready(function() {
         $button.click(function() {
-            $(this).toggleClass('activate');
-            $backdrop.toggleClass('activate');
+            var button = $(this);
+            button.toggleClass('activate2');
+            $backdrop.toggleClass('activate1');
+            $backdrop.on('click', function() {
+                $(this).removeClass('activate1');
+                button.removeClass('activate2');
+            })
         });
     });
 })($);

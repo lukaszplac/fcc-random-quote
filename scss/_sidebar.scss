@@ -1,3 +1,5 @@
+$default-transition: all .75s cubic-bezier(.33,.67,.51,.95);
+
 .navigation {
     position: relative;
     &__sidebar {
@@ -11,53 +13,110 @@
             height: 100vh;
             background-color: rgba(0, 0, 0, 0);
             z-index: 999;
-            transition: all .5s;
-            &.activate {
+            transition: $default-transition;
+            &.activate1 {
                 background-color: rgba(0, 0, 0, 0.65);
                 visibility: visible;
             }
         }
-        &--button {
+        &__button {
             background-color: white;
             left: 1%;
             top: 1%;
             position: fixed;
             width: 5rem;
             height: 5rem;
-            border-radius: 30%;
+            border-radius: 10%;
             text-align: center;
             color: black;
             font-size: 3rem;
             line-height: 150%;
-            transition: all .5s;
+            transition: $default-transition;
             z-index: 1002;
             &:hover {
                 cursor: pointer;
             }
-            &.activate {
+            &.activate2 {
                 left: 26%;
-                transform: rotate(-180deg);
                 @media (max-width: 900px) {
-                    left: 51%;
+                    left: 66%;
                 }
-            }            
+            }
+            &.activate2 &--line:first-child {
+                transform: translate(-50%, -50%) rotate(-855deg);
+                top: 50%;
+                //left: 20%;
+            }
+            &.activate2 &--line:last-child {
+                transform: translate(-50%, -50%) rotate(855deg);
+                top: 50%;
+                //left: 20%;
+            }
+            &.activate2 &--line:nth-child(2) {
+                opacity: 0;
+            }
+            &--line {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%) rotate(0);
+                transition: $default-transition;
+                transform-origin: center;
+                border: .1rem solid black;
+                width: 60%;
+                &:first-child {
+                    top: 35%;
+                }
+                &:last-child {
+                    top: 65%;
+                }
+            }       
         }
 
-        .activate + &--content {
+        .activate2 + &__content {
             left: 0;
         }
-        &--content {
+        &__content {
             z-index: 1000;
             position: absolute;
             width: 25%;
             height: 100vh;
             top: 0;
             left: -30%;
-            transition: all .5s;
+            transition: $default-transition;
             background-color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            &--head {
+
+            }
+
+            &--pic {
+                flex: 0 0 10%;
+                text-align: center;
+                img {
+                    height: auto;
+                    max-width: 30%;
+                }
+            }
+
+            &--others {
+                margin-top: 10%;
+                font-size: 1.4rem;
+                display: flex;
+                justify-content: flex;
+            }
+
+            &--footer {
+                margin-top: auto;
+                text-align: center;
+                font-size: 1rem;
+            }
             @media (max-width: 900px) {
-                width: 50%;
-                left: -50%;
+                width: 65%;
+                left: -65%;
             }
         }
     }
