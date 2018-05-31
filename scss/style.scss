@@ -57,10 +57,16 @@ body {
             .author {
                 font-size: 1.6rem;
                 padding: 1rem;
+                @media (max-width: 600px) {
+                    font-size: 1.2rem;
+                }
             }
             .quote {
                 font-size: 2rem;
                 font-style: italic;
+                @media (max-width: 600px) {
+                    font-size: 1.6rem;
+                }
             }
         }
         &-nav {
