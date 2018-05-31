@@ -1,5 +1,11 @@
 $default-transition: all .75s cubic-bezier(.33,.67,.51,.95);
 
+//if tile color not provided from outside use default violet
+$color: violet;
+@if variable-exists(tile-color) {
+    $color: $tile-color;
+} 
+
 .navigation {
     position: relative;
     &__sidebar {
@@ -9,8 +15,8 @@ $default-transition: all .75s cubic-bezier(.33,.67,.51,.95);
             position: absolute;
             top: 0;
             left: 0;
-            width: 100vw;
-            height: 100vh;
+            min-width: 100%;
+            min-height: 100%;
             background-color: rgba(0, 0, 0, 0);
             z-index: 999;
             transition: $default-transition;
@@ -37,7 +43,7 @@ $default-transition: all .75s cubic-bezier(.33,.67,.51,.95);
                 cursor: pointer;
             }
             &.activate2 {
-                left: 26%;
+                left: 31%;
                 @media (max-width: 900px) {
                     left: 66%;
                 }
@@ -45,12 +51,10 @@ $default-transition: all .75s cubic-bezier(.33,.67,.51,.95);
             &.activate2 &--line:first-child {
                 transform: translate(-50%, -50%) rotate(-855deg);
                 top: 50%;
-                //left: 20%;
             }
             &.activate2 &--line:last-child {
                 transform: translate(-50%, -50%) rotate(855deg);
                 top: 50%;
-                //left: 20%;
             }
             &.activate2 &--line:nth-child(2) {
                 opacity: 0;
@@ -77,20 +81,36 @@ $default-transition: all .75s cubic-bezier(.33,.67,.51,.95);
             left: 0;
         }
         &__content {
-            z-index: 1000;
+            z-index: 5000;
             position: absolute;
-            width: 25%;
-            height: 100vh;
+            width: 30%;
             top: 0;
             left: -30%;
+            height: 100vh;
             transition: $default-transition;
             background-color: white;
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
             align-items: center;
+            overflow: scroll;
+            @media only screen and (max-width: 900px) {
+                width: 65%;
+                left: -65%;
+            }
+            &::-webkit-scrollbar { 
+                display: none; 
+            }
             &--head {
-
+                &--2, &--1 {
+                    text-align: center;
+                }
+                &--1 {
+                    margin-top: 2rem;
+                }
+                &--2 {
+                    margin-top: 2rem;
+                }
             }
 
             &--pic {
@@ -98,25 +118,122 @@ $default-transition: all .75s cubic-bezier(.33,.67,.51,.95);
                 text-align: center;
                 img {
                     height: auto;
-                    max-width: 30%;
+                    max-width: 25%;
                 }
             }
 
             &--others {
-                margin-top: 10%;
+                align-self: stretch;
+                padding: 0 2rem 2rem 2rem;
                 font-size: 1.4rem;
                 display: flex;
-                justify-content: flex;
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                align-content: flex-start;
+                flex-wrap: wrap;
+                flex: 1 0 auto;
+                &--pic {
+                    flex: 0 0 14rem;
+                    margin: .5rem;
+                    height: 14rem;
+                    position: relative;
+                    border-radius: .3rem;
+                    overflow: hidden;
+                    @media screen and (min-width: 1800px) {
+                        flex: 0 0 18rem;
+                        height: 18rem; 
+                    }
+                    @media screen and (max-width: 600px) {
+                        flex: 0 0 7rem;
+                        height: 7rem; 
+                    }
+                    &:hover {
+                        .region-1 {
+                            transform: scale(0) translateY(-50%);
+                            transform-origin: top;
+                        }
+                        .region-2 {
+                            transform: scale(0) translateX(50%);
+                            transform-origin: right;
+                        }
+                        .region-3 {
+                            transform: scale(0) translateY(50%);
+                            transform-origin: bottom;
+                        }
+                        .region-4 {
+                            transform: scale(0) translateX(-50%);
+                            transform-origin: left;
+                        }
+                        .image {
+                            filter: blur(2px) brightness(.3);
+                        }
+                        .caption {
+                            top: 50%;
+                            transform: translate(-50%, -50%);
+                            opacity: 1;
+                            font-weight: bold;
+                            &:hover {
+                                cursor: pointer;
+                                color: $color;
+                                transition: all .3s;
+                            }
+                        }
+                    }
+                    .image {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: contain;
+                        background-image: url('/assets/p1.jpg');
+                        background-size: contain;
+                        padding: 0;
+                        margin: 0;
+                        transition: all .8s ease-in;
+
+                    }
+                    .caption {
+                        position: absolute;
+                        left: 50%;
+                        top: 100%;
+                        opacity: 0;
+                        transform: translateX(-50%);
+                        text-align: center;
+                        color: white;
+                        font-size: 1.8rem;
+                        margin: 0;
+                        padding: 0;
+                        transition: all .8s ease-out;
+                    }
+                    .region {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        z-index: 1000;
+                        transition: all .5s ease-out;
+                        background-color: $color;
+                        &.region-1 {
+                            clip-path: polygon(0 0, 100% 0, 50% 50%, 0 0);
+                        }
+                        &.region-2 {
+                            clip-path: polygon(50% 50%, 100% 0, 100% 100%, 50% 50%);
+                        }
+                        &.region-3 {
+                            clip-path: polygon(50% 50%, 100% 100%, 0 100%, 50% 50%);
+                        }
+                        &.region-4 {
+                            clip-path: polygon(0 0, 50% 50%, 0 100%, 0 0);
+                        }
+                    }
+                }
             }
 
             &--footer {
-                margin-top: auto;
+                //margin-top: auto;
                 text-align: center;
                 font-size: 1rem;
-            }
-            @media (max-width: 900px) {
-                width: 65%;
-                left: -65%;
+                
             }
         }
     }

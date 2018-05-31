@@ -3,6 +3,7 @@
     var quoteElement = $('.quote');
     var authorElement = $('.author');
     var tweetButton = $('.nav-twitter');
+    var root = document.documentElement;
 
     $(document).ready(function() {
         getJsonHandler();
@@ -56,12 +57,14 @@
     }
 
     function animateColors(r,g,b) {
+        motiveColor = `rgb(${r}, ${g}, ${b})`;
         $('.shared-color1').animate({
-            backgroundColor: $.Color(`rgb(${r}, ${g}, ${b})`)
+            backgroundColor: $.Color(motiveColor)
         }, {duration: 1200, queue: false});
         $('.shared-color2').animate({
-            backgroundColor: $.Color(`rgb(${r}, ${g}, ${b})`)
+            backgroundColor: $.Color(motiveColor)
         }, {duration: 300, queue: false});
+        root.style.setProperty("--tiles-color", motiveColor);
     }
 
 
